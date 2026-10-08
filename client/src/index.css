@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+  font-family: 'DM Sans', sans-serif;
+  color: #24251f;
+  background: #f7f7f4;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --ink: #24251f;
+  --muted: #85867e;
+  --green: #486b4a;
+  --line: #e5e5de;
+  --mono: 'DM Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 320px; min-height: 100vh; }
+a { color: inherit; }
+button, input { font: inherit; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+
+.page-shell { width: min(100% - 64px, 1100px); margin: 0 auto; }
+.topbar { height: 82px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-size: 19px; font-weight: 700; letter-spacing: -.8px; }
+.brand-mark { display: grid; place-items: center; width: 31px; height: 31px; border-radius: 9px 9px 9px 3px; background: var(--green); color: white; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; }
+.top-note, .eyebrow, .summary-badge { font: 10px var(--mono); letter-spacing: 1.1px; }
+.top-note { color: var(--muted); display: flex; align-items: center; gap: 9px; }
+.status-dot { width: 7px; height: 7px; border-radius: 50%; background: #8bab78; }
+.hero { text-align: center; padding: 91px 0 72px; }
+.eyebrow { color: var(--green); display: inline-flex; align-items: center; gap: 8px; }
+.eyebrow span { font-size: 15px; }
+h1 { margin: 21px 0 17px; font-family: 'Playfair Display', Georgia, serif; font-size: clamp(52px, 7vw, 78px); line-height: .99; font-weight: 500; letter-spacing: -3.5px; }
+h1 span { color: var(--green); font-style: italic; }
+.hero-copy { margin: 0; color: #77786f; font-size: 15px; line-height: 1.8; }
+.url-form { max-width: 655px; height: 66px; display: flex; align-items: center; gap: 13px; margin: 34px auto 0; padding: 7px 7px 7px 19px; border: 1px solid #dfdfd7; border-radius: 10px; background: #fff; box-shadow: 0 12px 30px #24251f0b; }
+.url-icon { color: #93948c; font-size: 23px; transform: rotate(-35deg); }
+.url-form input { flex: 1; min-width: 0; border: 0; outline: 0; color: var(--ink); font-size: 14px; background: transparent; }
+.url-form input::placeholder { color: #a5a69f; }
+.url-form button { height: 50px; display: flex; align-items: center; gap: 13px; padding: 0 19px; border: 0; border-radius: 7px; background: var(--green); color: white; font-size: 13px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s; }
+.url-form button:hover:not(:disabled) { background: #38583b; transform: translateY(-1px); }
+.url-form button:disabled { opacity: .65; cursor: wait; }
+.url-form button span:last-child { font-size: 17px; }
+.privacy-note { margin: 15px 0 0; color: #9b9c94; font-size: 11px; }
+.privacy-note span { color: #b58c50; margin-right: 4px; }
+.error-message { max-width: 650px; margin: 16px auto 0; color: #a64032; font-size: 13px; }
+.spinner { width: 13px; height: 13px; border: 2px solid #ffffff70; border-top-color: white; border-radius: 50%; animation: spin .7s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; padding: 3px 22px 77px; }
+.feature { position: relative; min-height: 159px; padding-top: 21px; border-top: 1px solid var(--line); text-align: left; }
+.feature-icon { position: absolute; right: 1px; top: 22px; color: #789477; font-size: 21px; }
+.feature-number { margin-bottom: 14px; color: #aaa99f; font: 10px var(--mono); letter-spacing: 1px; }
+.feature h2 { margin: 0 0 8px; font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 500; }
+.feature p { margin: 0; color: #898a82; font-size: 12px; line-height: 1.65; }
+.footer { display: flex; justify-content: space-between; align-items: center; min-height: 72px; border-top: 1px solid var(--line); color: #999a91; font-size: 10px; }
+.footer > span:first-child { color: var(--ink); font-size: 13px; font-weight: 700; letter-spacing: -.5px; }
+.footer-period { color: var(--green); }
+.summary-card { max-width: 655px; margin: 32px auto 0; padding: 26px 30px; border: 1px solid var(--line); border-radius: 11px; background: #fff; text-align: left; box-shadow: 0 12px 30px #24251f0b; }
+.summary-meta, .card-footer { display: flex; justify-content: space-between; align-items: center; gap: 12px; color: #97988f; font-size: 10px; }
+.summary-badge { display: flex; gap: 7px; align-items: center; color: var(--green); font-size: 9px; }
+.summary-badge span { width: 6px; height: 6px; border-radius: 50%; background: #7fa277; }
+.summary-card h2 { margin: 21px 0 12px; font: 600 23px/1.3 'Playfair Display', Georgia, serif; letter-spacing: -.3px; }
+.summary-text { color: #64655d; font-size: 13px; line-height: 1.8; white-space: pre-line; }
+.card-footer { margin-top: 22px; padding-top: 15px; border-top: 1px solid #eeeeea; }
+.card-footer a { color: var(--green); font-weight: 600; text-decoration: none; }
+.card-footer a:hover { text-decoration: underline; }
+
+@media (max-width: 650px) {
+  .page-shell { width: min(100% - 36px, 1100px); }
+  .topbar { height: 68px; }
+  .top-note { font-size: 8px; letter-spacing: .4px; }
+  .hero { padding: 70px 0 53px; }
+  h1 { letter-spacing: -2px; }
+  .hero-copy { font-size: 13px; }
+  .desktop-break { display: none; }
+  .url-form { height: auto; flex-wrap: wrap; gap: 8px; padding: 10px; }
+  .url-form input { height: 42px; font-size: 12px; }
+  .url-icon { display: none; }
+  .url-form button { width: 100%; justify-content: center; height: 45px; }
+  .features { grid-template-columns: 1fr; gap: 14px; padding: 0 2px 46px; }
+  .feature { min-height: 132px; }
+  .footer { gap: 10px; font-size: 9px; }
+  .summary-card { padding: 21px 18px; }
+  .summary-card h2 { font-size: 20px; }
+}
