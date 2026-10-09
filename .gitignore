@@ -19,6 +19,8 @@ server/.env.*
 .vscode/*
 !.vscode/extensions.json
 .idea
+.history/
+.claude-agent-shadow/
 .DS_Store
 *.suo
 *.ntvs*
