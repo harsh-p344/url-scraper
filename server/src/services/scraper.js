@@ -28,10 +28,14 @@ export async function scrapeUrl(rawUrl) {
 
   const response = await fetch(url, {
     headers: {
-      'User-Agent': 'URLScraper/1.0',
+      'User-Agent':
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' +
+        '(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+      Accept: 'text/html,application/xhtml+xml;q=0.9,*/*;q=0.8',
+      'Accept-Language': 'en-US,en;q=0.9',
     },
-    redirect: 'error',
-    signal: AbortSignal.timeout(12000),
+    redirect: 'follow',
+    signal: AbortSignal.timeout(15000),
   })
 
   if (!response.ok) {
@@ -39,7 +43,7 @@ export async function scrapeUrl(rawUrl) {
   }
 
   const contentType = response.headers.get('content-type') || ''
-  if (!contentType.includes('text/html')) {
+  if (!/text\/html|application\/xhtml\+xml/i.test(contentType)) {
     throw new Error('The URL must point to an HTML page.')
   }
 
@@ -54,8 +58,14 @@ export async function scrapeUrl(rawUrl) {
   $('script, style, noscript, nav, footer, header, aside, form, svg').remove()
 
   const title = $('meta[property="og:title"]').attr('content') || $('title').text() || $('h1').first().text() || url.hostname
-  const article = $('article').text() || $('[itemprop="articleBody"]').text() || $('main').text() || $('body').text()
-  const text = article.replace(/\s+/g, ' ').trim()
+  const candidates = [
+    $('article').text(),
+    $('[itemprop="articleBody"]').text(),
+    $('main').text(),
+    $('body').text(),
+  ].map((candidate) => candidate.replace(/\s+/g, ' ').trim())
+
+  const text = candidates.reduce((longest, candidate) => (candidate.length > longest.length ? candidate : longest), '')
 
   if (text.length < 120) {
     throw new Error('Not enough readable text found on this page.')
